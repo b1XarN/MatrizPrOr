@@ -10,7 +10,7 @@
 
         // $empresa = mysqli_fetch_assoc($empresas);
     }else{
-        $sqlU = "DELETE FROM USUARIO WHERE loginU = '$_GET[id]'";
+        $sqlU = "UPDATE USUARIO SET estadoU=0 WHERE loginU = '$_GET[id]'";
 
         $eliminarU = mysqli_query($con,$sqlU);
 
