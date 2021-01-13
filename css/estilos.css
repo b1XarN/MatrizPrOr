@@ -13,9 +13,25 @@
     border: 2px solid #0e2b37;
     border-radius: 10px;
 }
-
 .mayor_responsabilidad{
     font-size: 25px;
     font-weight: bold;
     text-align: center;
+}
+.formulario{
+    text-align: center;
+}
+.campos-inic{
+    margin-top: 15px;
+}
+.submit-inic{
+    margin-top: 15px;
+}
+.contenedor-inic{
+    margin-top: 45px;
+    color: #2b78e4;
+}
+.titulo-form{
+    font-size: 25px;
+    margin-top: 15px;
 }
