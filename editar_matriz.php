@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="row my-5">
+        <div class="row my-5" style="text-align:center;">
             <div class="col">
                 <h3>Agregar Proceso</h3>
                 <form action="registros/registrar_proceso.php?id=<?=$_GET['id']?>" method="POST">
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row my-5" style="text-align:center;">
             <div class="col">
                 <h3>Agregar SubProcesos</h3>
                 <?php  
@@ -103,7 +103,63 @@
             </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row my-5" style="text-align:center;">
+            <div class="col">
+                <h3>Editar SubProceso</h3>
+                <?php  
+                    if(mysqli_num_rows($subprocesos) >= 1){
+                        ?>
+                        <form action="ediciones/editar_subprocesos.php?id=<?=$_GET['id']?>" method="POST">
+                            <label for="">Seleccione un Subproceso</label><br>
+                            <select name="subprocesos" id="">
+                                <?php  
+                                    $subprocesos = mysqli_query($con, $sqlsP);
+                                    while($subproceso = mysqli_fetch_assoc($subprocesos)):
+                                        ?>
+                                            <option value="<?=$subproceso['idSubProceso']?>"><?=$subproceso['nombreSub']?></option>
+                                        <?php         
+                                    endwhile;
+                                ?>
+                            </select><br>
+                            <input type="submit" name="submitEditar" value="Editar" class="btn btn-primary">
+                            <input type="submit" name="submitEliminar" value="Eliminar" class="btn btn-danger">
+                        </form>
+                        <?php  
+                    }else{
+                        echo '<h5>Debe de haber minimo un subproceso registrado</h5>';
+                    }
+                ?>
+            </div>
+
+            <div class="col">
+                <h3>Editar Organizacion</h3>
+                <?php  
+                    if(mysqli_num_rows($organizaciones) >= 1){
+                        ?>
+                        <form action="ediciones/editar_organizaciones.php?id=<?=$_GET['id']?>" method="POST">
+                            <label for="">Seleccione una Organizacion</label><br>
+                            <select name="organizaciones" id="">
+                                <?php  
+                                    $organizaciones = mysqli_query($con, $sqlO);
+                                    while($organizacion = mysqli_fetch_assoc($organizaciones)):
+                                        ?>
+                                            <option value="<?=$organizacion['idOrganizacion']?>"><?=$organizacion['nombreOrganizacion']?></option>
+                                        <?php         
+                                    endwhile;
+                                ?>
+                            </select><br>
+                            <input type="submit" name="submitEditar" value="Editar" class="btn btn-primary">
+                            <input type="submit" name="submitEliminar" value="Eliminar" class="btn btn-danger">
+                        </form>
+                        <?php  
+                    }else{
+                        echo '<h5>Debe de haber minimo una Organizacion registrada</h5>';
+                    }
+                ?>
+            </div>
+        </div>
+
+        <div class="row mt-5" style="text-align:center;">
             <div class="col">
                 <a href="empresa.php?id=<?=$_GET['id']?>" class="btn btn-danger">Salir</a>
             </div>
