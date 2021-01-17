@@ -5,8 +5,9 @@
         $sqlO = "SELECT * FROM ORGANIZACION where idEmpresa = $_GET[id] and estadoOr = 1";
         $organizaciones = mysqli_query($con, $sqlO);
         while($organizacion = mysqli_fetch_assoc($organizaciones)):
-            $idOrganizacion = $organizacion['idOrganizacion']; 
-            $asignacion = $_POST[$organizacion['nombreOrganizacion']];
+            $idOrganizacion = $organizacion['idOrganizacion'];
+            $nombreOrg = str_replace(" ","_",$organizacion['nombreOrganizacion']);
+            $asignacion = $_POST[$nombreOrg];
             $sqlDA = "UPDATE DETALLE_ASIGNACION set asignacion = '$asignacion' where idOrganizacion = $idOrganizacion and idSubProceso = $_SESSION[subproceso] and idEmpresa = $_GET[id]";
             $sqlguardar = mysqli_query($con, $sqlDA);
         endwhile;
@@ -31,5 +32,7 @@
     }else{
         echo 'ALGO SALIO MAAAAAL!!';
     }
+
+    
 
 ?>
