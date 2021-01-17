@@ -166,9 +166,15 @@
                     }
                 ?>
             </div>
-            <div class="col-4">
-                <a href="editar_matriz.php?id=<?=$_GET['id']?>" class="btn btn-success">Editar Matriz</a>
-            </div>
+            <?php  
+                if($_SESSION['usuario']['tipo'] == 'Administrador' || $_SESSION['usuario']['tipo'] == 'Normal'){
+                ?>
+                    <div class="col-4">
+                        <a href="editar_matriz.php?id=<?=$_GET['id']?>" class="btn btn-success">Editar Matriz</a>
+                    </div>
+                <?php 
+                }
+            ?>
         </div>
 
         <div class="row justify-content-end mt-2">
