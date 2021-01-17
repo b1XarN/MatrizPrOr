@@ -11,7 +11,7 @@
         $usuario = $_POST['usuario'];
         $password = $_POST['contra'];
 
-        $sql = "SELECT * FROM USUARIO WHERE loginU = '$usuario' AND contra = '$password'";
+        $sql = "SELECT * FROM USUARIO WHERE loginU = '$usuario' AND contra = '$password' and estadoU=1";
         $login = mysqli_query($con, $sql);
 
         if($login && mysqli_num_rows($login) == 1){

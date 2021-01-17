@@ -1,19 +1,18 @@
-<?php
+<?php 
     require_once 'conexion.php';
     
-        
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/estilos.css">
-    <script src="https://kit.fontawesome.com/496cc02742.js" crossorigin="anonymous"></script>
-    <title>Mi Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://kit.fontawesome.com/496cc02742.js" crossorigin="anonymous"></script>        
+    <title>Menu Principal</title>
 </head>
 <body>
     <div class="container">
@@ -24,7 +23,7 @@
                     <p><?=$_SESSION['usuario']['loginU']?></p>
                 </div>
                 <div>
-                    <a href="" class="links-side">Mi Perfil</a>
+                    <a href="perfil.php" class="links-side">Mi Perfil</a>
                     <a href="menu.php" class="links-side">Empresas</a>
                     <?php 
                         if($_SESSION['usuario']['tipo'] == 'Administrador'){
@@ -41,29 +40,48 @@
                         }
                     ?>
                     <a href="salir.php" class="links-side">Salir</a>
-                </div>
+                </div>  
             </div>
+
             <div class="col-8 contenido">
-                <h2>Mi Perfil</h2>
+                <h2>Auditoria</h2>
                 <hr>
-                <div style="margin-left:60px;">
-                    <p><span style="font-size:20px; color:red; ">Nombre:</span> <?=$_SESSION['usuario']['nombresApellidos']?></p>
-                    <p><span style="font-size:20px; color:red; ">DNI:</span> <?=$_SESSION['usuario']['DNI']?></p>
-                    <p><span style="font-size:20px; color:red; ">Direccion:</span> <?=$_SESSION['usuario']['direccion']?></p>
-                    <p><span style="font-size:20px; color:red; ">Telefono:</span> <?=$_SESSION['usuario']['telefono']?></p>
-                    <p><span style="font-size:20px; color:red; ">Correo:</span> <?=$_SESSION['usuario']['correo']?></p>
-                    <p><span style="font-size:20px; color:red; ">Tipo:</span> <?=$_SESSION['usuario']['tipo']?></p>
-                    <a href="menu.php" class="btn btn-outline-success my-3" >Volver</a>
-                </div>
+                
+                <?php  
+                    $sql = "SELECT * FROM AUDITORIA";
+                    $auditorias = mysqli_query($con, $sql);
+                ?>
+
+                <table class="table table-bordered" >
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Operacion</th>
+                            <th>Fecha y Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php  
+                            while($auditoria = mysqli_fetch_assoc($auditorias)):
+                            ?>
+                                <tr>
+                                    <td><?=$auditoria['usuario']?></td>
+                                    <td><?=$auditoria['operacion']?></td>
+                                    <td><?=$auditoria['fechaHora']?></td>
+                                </tr>
+                            <?php 
+                            endwhile;
+                        ?>
+                    </tbody>
+                </table>
+
+                
+
             </div>
         </div>
 
 
-
     </div>
-
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

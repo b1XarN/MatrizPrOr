@@ -32,6 +32,13 @@
                         <?php 
                         }
                     ?>
+                    <?php  
+                        if($_SESSION['usuario']['tipo'] == 'Administrador' || $_SESSION['usuario']['tipo'] == 'Auditor'){
+                        ?>
+                            <a href="auditoria.php" class="links-side">Auditoria</a>
+                        <?php 
+                        }
+                    ?>
                     <a href="salir.php" class="links-side">Salir</a>
                 </div>
             </div>
@@ -61,7 +68,7 @@
                                 <p style="font-size:20px; margin: 5px 0px;"><?=$usuario['loginU']?></p>
                             </div>
                             <div class="col-6" style="text-align:right">
-                                <a class="btn btn-primary mx-3 px-3" href="editar_usuario.php?id=<?=$usuario['loginU']?>">Editar</a>
+                                <a class="btn btn-primary mx-3 px-3" href="ediciones/editar_usuario.php?id=<?=$usuario['loginU']?>">Editar</a>
                                 <?php 
                                     if($usuario['loginU'] != $_SESSION['usuario']['loginU']){
                                     ?>

@@ -32,6 +32,13 @@
                         <?php 
                         }
                     ?>
+                    <?php  
+                        if($_SESSION['usuario']['tipo'] == 'Administrador' || $_SESSION['usuario']['tipo'] == 'Auditor'){
+                        ?>
+                            <a href="auditoria.php" class="links-side">Auditoria</a>
+                        <?php 
+                        }
+                    ?>
                     <a href="salir.php" class="links-side">Salir</a>
                 </div>  
             </div>
@@ -61,7 +68,20 @@
                                 </div>
                                 <div class="col-6" style="text-align:right">
                                     <a class="btn btn-primary mx-3 px-3" href="empresa.php?id=<?=$empresa['idEmpresa']?>">Ver</a>
-                                    <a class="btn btn-danger" href="eliminacion/eliminar_empresa.php?id=<?=$empresa['idEmpresa']?>">Borrar</a>
+                                    <?php  
+                                        if($_SESSION['usuario']['tipo'] == 'Administrador' || $_SESSION['usuario']['tipo'] == 'Normal'){
+                                        ?>
+                                            <a class="btn btn-danger mr-3" href="eliminacion/eliminar_empresa.php?id=<?=$empresa['idEmpresa']?>">Borrar</a>
+                                        <?php 
+                                        }
+                                    ?>
+                                    <?php  
+                                        if($_SESSION['usuario']['tipo'] == 'Administrador' || $_SESSION['usuario']['tipo'] == 'Auditor'){
+                                        ?>
+                                            <a class="btn btn-warning" href="informes.php?id=<?=$empresa['idEmpresa']?>">Informes</a>
+                                        <?php 
+                                        }
+                                    ?>
                                 </div>
                             </div>    
                     <?php 

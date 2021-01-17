@@ -48,7 +48,7 @@
 
         <div class="row my-5">
             <div class="col-12">
-                <a href="editar_datos.php?id=<?=$_GET['id']?>" class="btn btn-success">Editar Datos</a>
+                <a href="ediciones/editar_datos.php?id=<?=$_GET['id']?>" class="btn btn-success">Editar Datos</a>
             </div>
         </div>
 

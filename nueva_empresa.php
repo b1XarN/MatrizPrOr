@@ -16,7 +16,29 @@
     <div class="container">
         <div class="row">
             <div class="col-4 side">
-               <p>USUARIOS</p>
+                <div class="mt-2" style="text-align:center;padding: 15px 20px 0px 20px; color: #fff; font-size:25px;">
+                    <i class="far fa-user" style="font-size:50px; margin-bottom:10px;"></i>
+                    <p><?=$_SESSION['usuario']['loginU']?></p>
+                </div>
+                <div>
+                    <a href="perfil.php" class="links-side">Mi Perfil</a>
+                    <a href="menu.php" class="links-side">Empresas</a>
+                    <?php 
+                        if($_SESSION['usuario']['tipo'] == 'Administrador'){
+                        ?>
+                            <a href="usuarios.php" class="links-side">Administrar Usuarios</a>
+                        <?php 
+                        }
+                    ?>
+                    <?php  
+                        if($_SESSION['usuario']['tipo'] == 'Administrador' || $_SESSION['usuario']['tipo'] == 'Auditor'){
+                        ?>
+                            <a href="auditoria.php" class="links-side">Auditoria</a>
+                        <?php 
+                        }
+                    ?>
+                    <a href="salir.php" class="links-side">Salir</a>
+                </div>
             </div>
             <div class="col-8 contenido">
                 <h2>Nueva Empresa</h2>

@@ -15,6 +15,14 @@ create table USUARIO(
     primary key(loginU)
 );
 
+create table AUDITORIA(
+    idAutoria int auto_increment,
+    usuario varchar(30),
+    operacion varchar(500),
+    fechaHora varchar(60),
+    primary key(idAutoria)
+);
+
 create table EMPRESA(
     idEmpresa int auto_increment,
     nombreEmpresa varchar(60),

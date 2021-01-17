@@ -17,8 +17,15 @@
         $sql = "INSERT INTO USUARIO VALUES('$usuario', '$nombres', '$dni', '$direccion', '$telefono', '$email', '$password', '$tipo', 1)";
         $insertar = mysqli_query($con, $sql);
 
+        $usuario2 = $_SESSION['usuario']['loginU'];
+        $operacion = 'Registro del usuario '.$usuario;
+        $hoy = date('l jS \of F Y h:i:s A');
+        $sql2 = "INSERT INTO AUDITORIA VALUES(null, '$usuario2', '$operacion', '$hoy')";
+        $guardar2 = mysqli_query($con, $sql2);
+
         if($insertar){
             $_SESSION['completado'] = "El registro se ha insertado con exito";
+
             header('Location: ../usuarios.php');
         }else{
             echo '<h1>Algo malo sucedio!!!!!!</h1>';

@@ -29,6 +29,18 @@
                 $guardar2 = mysqli_query($con, $sqlDA);
             endwhile;
         }
+
+        $sqlEm = "SELECT * FROM EMPRESA WHERE idEmpresa = $_GET[id] ";
+        $empresas = mysqli_query($con, $sqlEm);
+        $empresa = mysqli_fetch_assoc($empresas);
+        $nombreEmpresa = $empresa['nombreEmpresa'];
+
+        $usuario = $_SESSION['usuario']['loginU'];
+        $operacion = 'Registro del subproceso '.$subproc.' del proceso '.$proceso['nombreProceso'].' en la empresa '.$nombreEmpresa;
+        $hoy = date('l jS \of F Y h:i:s A');
+        $sql2 = "INSERT INTO AUDITORIA VALUES(null, '$usuario', '$operacion', '$hoy')";
+        $guardar2 = mysqli_query($con, $sql2);
+
         header('Location: ../empresa.php?id='.$_GET['id']);
     }else{
         echo 'ALGO SALIO MAL!!';

@@ -30,6 +30,13 @@
                         <?php 
                         }
                     ?>
+                    <?php  
+                        if($_SESSION['usuario']['tipo'] == 'Administrador' || $_SESSION['usuario']['tipo'] == 'Auditor'){
+                        ?>
+                            <a href="auditoria.php" class="links-side">Auditoria</a>
+                        <?php 
+                        }
+                    ?>
                     <a href="salir.php" class="links-side">Salir</a>
                 </div>
             </div>

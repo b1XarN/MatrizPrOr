@@ -11,6 +11,8 @@
         $sqlsP = "SELECT * FROM SUBPROCESO WHERE idEmpresa = $idEmpresa and estadoSub = 1";
         $subprocesos = mysqli_query($con, $sqlsP);
         
+        
+
         if(mysqli_num_rows($subprocesos) >= 1){
             $sqlOrg = "SELECT * FROM ORGANIZACION WHERE idOrganizacion=(SELECT max(idOrganizacion) FROM ORGANIZACION)";
             $orgs = mysqli_query($con, $sqlOrg);
@@ -22,6 +24,18 @@
                 $guardar2 = mysqli_query($con, $sqlDA);
             endwhile;
         }
+
+        $sqlEm = "SELECT * FROM EMPRESA WHERE idEmpresa = $_GET[id] ";
+        $empresas = mysqli_query($con, $sqlEm);
+        $empresa = mysqli_fetch_assoc($empresas);
+        $nombreEmpresa = $empresa['nombreEmpresa'];
+
+        $usuario = $_SESSION['usuario']['loginU'];
+        $operacion = 'Registro de la organizacion '.$nombreOrg.' en la empresa '.$nombreEmpresa;
+        $hoy = date('l jS \of F Y h:i:s A');
+        $sql2 = "INSERT INTO AUDITORIA VALUES(null, '$usuario', '$operacion', '$hoy')";
+        $guardar2 = mysqli_query($con, $sql2);
+
         header('Location: ../empresa.php?id='.$_GET['id']);
         
     }else{

@@ -16,6 +16,13 @@
         $sql = "INSERT INTO EMPRESA VALUES(null, '$nombreEmpresa', '$ruc', '$mision', '$vision', '$valor', '$factor', '$objetivos', $estado)";
         $guardar = mysqli_query($con, $sql);
 
+        $usuario = $_SESSION['usuario']['loginU'];
+        $operacion = 'Registro de la empresa '.$nombreEmpresa;
+        $hoy = date('l jS \of F Y h:i:s A');
+        $sql2 = "INSERT INTO AUDITORIA VALUES(null, '$usuario', '$operacion', '$hoy')";
+        $guardar2 = mysqli_query($con, $sql2);
+
+
         header('Location: menu.php');
     
     }
