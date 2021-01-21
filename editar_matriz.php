@@ -159,8 +159,33 @@
             </div>
         </div>
 
-        <div class="row mt-5" style="text-align:center;">
+        <div class="row mt-5 align-items-center" style="text-align:center;">
             <div class="col">
+            <h3>Editar Proceso</h3>
+                <?php  
+                    if(mysqli_num_rows($procesos) >= 1){
+                        ?>
+                        <form action="ediciones/editar_procesos.php?id=<?=$_GET['id']?>" method="POST">
+                            <label for="">Seleccione un Proceso</label><br>
+                            <select name="procesos" id="">
+                                <?php  
+                                    $procesos = mysqli_query($con, $sqlP);
+                                    while($proceso = mysqli_fetch_assoc($procesos)):
+                                        ?>
+                                            <option value="<?=$proceso['idProceso']?>"><?=$proceso['nombreProceso']?></option>
+                                        <?php         
+                                    endwhile;
+                                ?>
+                            </select><br>
+                            <input type="submit" name="submitEditar" value="Editar" class="btn btn-primary">
+                        </form>
+                        <?php  
+                    }else{
+                        echo '<h5>Debe de haber minimo un Proceso registrado</h5>';
+                    }
+                ?>    
+            </div>
+            <div class="col align-items-center">
                 <a href="empresa.php?id=<?=$_GET['id']?>" class="btn btn-danger">Salir</a>
             </div>
         </div>
