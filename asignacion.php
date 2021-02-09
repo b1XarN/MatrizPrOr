@@ -45,11 +45,51 @@
                             while($organizacion = mysqli_fetch_assoc($organizaciones)):
                                 ?>
                                     <label for="" style="margin-right: 25px;"><?=$organizacion['nombreOrganizacion']?>: </label>
-                                    <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Responsabilidad mayor"> Responsabilidad mayor 
-                                    <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Participacion mayor"> Participacion mayor 
-                                    <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Alguna participacion"> Alguna participacion 
-                                    <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Sin participacion" checked> Sin participacion <br>
+                                    <?php  
+                                        $sqlDA = "SELECT * FROM DETALLE_ASIGNACION where idEmpresa = $_GET[id] and idSubProceso = $subproceso[idSubProceso] and idOrganizacion = $organizacion[idOrganizacion]";
+                                        $asignaciones = mysqli_query($con, $sqlDA);
+                                        while($asignacion = mysqli_fetch_assoc($asignaciones)):
+                                            if($asignacion['asignacion'] == 'Responsabilidad mayor'){
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Responsabilidad mayor" checked> Responsabilidad mayor 
+                                                <?php 
+                                            }else{
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Responsabilidad mayor"> Responsabilidad mayor     
+                                                <?php
+                                            }
+
+                                            if($asignacion['asignacion'] == 'Participacion mayor'){
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Participacion mayor" checked> Participacion mayor 
+                                                <?php
+                                            }else{
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Participacion mayor"> Participacion mayor                                                 
+                                                <?php
+                                            }
+
+                                            if($asignacion['asignacion'] == 'Alguna participacion'){
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Alguna participacion" checked> Alguna participacion 
+                                                <?php 
+                                            }else{
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Alguna participacion"> Alguna participacion 
+                                                <?php 
+                                            }
+                                            if($asignacion['asignacion'] == 'Sin participacion'){
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Sin participacion" checked> Sin participacion <br>
+                                                <?php 
+                                            }else{
+                                                ?>
+                                                <input type="radio" name="<?=$organizacion['nombreOrganizacion']?>" value="Sin participacion" > Sin participacion <br>
+                                                <?php 
+                                            }
+                                    ?>
                                 <?php 
+                                        endwhile;
                             endwhile;
                         ?>
                         <div style="text-align: center;">

@@ -43,7 +43,7 @@
             <div class="col">
                 <h3>Agregar Organizacion</h3>
                 <form action="registros/registrar_organizacion.php?id=<?=$_GET['id']?>" method="POST">
-                    <input type="text" name="organizacion">
+                    <input type="text" name="organizacion" required="required" minlength="3">
                     <input type="submit" name="submitOrganizacion" value="Registrar" class="btn btn-primary">
                 </form>
             </div>
